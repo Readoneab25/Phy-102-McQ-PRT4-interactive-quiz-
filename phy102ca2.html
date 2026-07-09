@@ -1,0 +1,582 @@
+
+
+
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PHY 102 Interactive Quiz</title>
+  <style>
+    :root{--bg:#0f172a;--card:#111827;--accent:#06b6d4;--muted:#94a3b8;--white:#e6eef6}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background: #1E1B4B;color:#FFFF;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:920px;margin:28px auto;padding:20px}
+    header{display:flex;align-items:center;gap:16px}
+    h1{margin:0;}
+    .meta{color:var(--muted);font-size:13px}
+    .card{background: #312E81;padding:20px;border-radius:12px;margin-top:18px;box-shadow:0 6px 24px rgba(2,6,23,0.6)}
+    .question{font-size:18px;margin-bottom:12px}
+    .choices{display:flex;flex-direction:column;gap:8px}
+    .choice{background: #4338CA;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+    .choice:hover{transform:translateY(-2px)}
+    .choice.selected{outline:3px solid rgba(6,182,212,0.12);background: #22D3EE;}
+    .controls{display:flex;justify-content:space-between;align-items:center;margin-top:16px}
+    button{background:#C084FC;color:#042029;border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:600}
+    button.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)}
+    .progress{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden}
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#22D3EE);width:0%}
+    .footer{margin-top:16px;color:var(--muted);font-size:13px}
+    .result{padding:18px;border-radius:10px;background:linear-gradient(180deg, rgba(2,6,23,0.85), rgba(2,6,23,0.6));}
+    .review{margin-top:12px}
+    .q-review{background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;margin-bottom:10px}
+    @media(max-width:560px){.wrap{padding:12px}h1{font-size:18px}.question{font-size:16px}}
+    .timer{ 
+    color:#FBBF24;
+    
+    }
+    .span{
+        display:flex;
+        font-size: 25px ;
+        float:right;
+    }
+    .h1{
+        font-size:25px
+    }
+    
+    
+    
+    body.light-mode{
+  background:#f1f5f9;
+  color:#0f172a;
+}
+body.light-mode .card{background:#ffffff;}
+body.light-mode .choice{background:#e2e8f0;color:#0f172a;}
+body.light-mode .choice.selected{background:#3b82f6;color:white;}
+body.light-mode button{background:#22c55e;color:white;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1 class="h1">PHY 102 MCQs Interactive MCQ Quiz PRT1</h1>
+        <div class="meta">56 multiple-choice questions </div>
+ 
+                 <span class="span">Timer: <div class="timer" id="countdown-timer">30:00</div></span>
+      </div>
+    </header><div class="card" id="quiz-card">
+  <div class="progress" aria-hidden><i id="progress-bar"></i></div>
+  <div style="height:14px"></div>
+  <div id="q-area">
+    </div>
+
+  <div class="controls">
+    <div style="display:flex;gap:8px">
+      <button id="prevBtn" class="secondary">Previous</button>
+      <button id="nextBtn">Next</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <button id="submitBtn" class="secondary">Submit</button>
+      <div style="color:var(--muted);font-size:13px">Q <span id="q-num">1</span> / <span id="q-total">10</span></div>
+    </div>
+  </div>
+
+  <div class="footer">Tip: Select an answer and press Next. You can review answers after submission.Quiz will submit automatically once timer turns zero.</div>
+</div>
+
+<div id="result-area" style="display:none" class="card">
+  <div class="result">
+    <h2 id="score-title"></h2>
+    <p id="score-summary" class="meta"></p>
+  </div>
+  <div class="review" id="review-list"></div>
+  <div style="display:flex;gap:8px;margin-top:12px">
+    <button id="retryBtn">Retake Quiz</button>
+    <button id="exportBtn" class="secondary">Export Results</button>
+  </div>
+</div>
+<br><br><br>
+  <a href="https://wa.me/+2349036795652"><button>Contact The Developer</button></a>
+    <a href="https://wa.me/+2349036795652"><button>Support Project</button></a><br><br>
+   <button onclick="shareOnWhatsApp()">Share Quiz link via WhatsApp</button>
+  <h2>Designed by Sanctum</h2>
+  </div>
+   <script>
+       
+       
+
+
+  
+       const QUESTIONS = [
+  
+
+
+
+  // ================= DC CIRCUITS: DEFINITIONS AND LAWS =================
+{
+    q: "What is the SI unit of capacitance?",
+    c: ["Ohm", "Farad", "Henry", "Coulomb"],
+    a: 1
+  },
+  {
+    q: "What is electrical current defined as?",
+    c: ["The work done per unit charge", "The rate of movement or flow of charge", "The opposition to the flow of charge", "The energy supplied by a source per unit charge"],
+    a: 1
+  },
+  {
+    q: "What is the difference between EMF and voltage, as described in the notes?",
+    c: ["EMF is the energy used, while voltage is the energy supplied", "EMF is the total energy supplied per unit charge by a source, while voltage is the energy used", "EMF and voltage are exactly the same thing with no distinction", "EMF only applies to AC circuits while voltage only applies to DC circuits"],
+    a: 1
+  },
+  {
+    q: "Resistance of a material is proportional to which of its physical properties?",
+    c: ["Inversely proportional to length and directly proportional to cross-sectional area", "Directly proportional to length and inversely proportional to cross-sectional area", "Directly proportional to both length and cross-sectional area", "Independent of both length and cross-sectional area"],
+    a: 1
+  },
+  {
+    q: "What does electrical conductivity measure, and how is it related to resistivity?",
+    c: ["It measures how well a material conducts electricity, and is the reciprocal of resistivity (σ = 1/ρ)", "It measures how well a material resists electricity, and is equal to resistivity", "It measures the length of a conductor", "It measures voltage and is unrelated to resistivity"],
+    a: 0
+  },
+  {
+    q: "What does Ohm's Law state about the relationship between current, voltage, and resistance?",
+    c: ["Current equals resistance divided by voltage", "Current equals voltage divided by resistance", "Voltage equals current divided by resistance", "Resistance equals current divided by voltage"],
+    a: 1
+  },
+  {
+    q: "Which of the following devices is described as 'Ohmic', meaning it obeys Ohm's Law?",
+    c: ["A filament lamp", "A transistor", "A resistor", "A diode"],
+    a: 2
+  },
+  {
+    q: "Which of the following devices is described as 'Non-ohmic', meaning it does NOT obey Ohm's Law?",
+    c: ["A resistor", "A cable", "A filament lamp", "A copper wire"],
+    a: 2
+  },
+  {
+    q: "In a parallel arrangement of resistors, what is true about the potential drop across each resistor?",
+    c: ["It varies depending on the resistor's value", "It is the same across each resistor", "It is zero across each resistor", "It depends on the order in which the resistors are connected"],
+    a: 1
+  },
+  {
+    q: "How does the equivalent resistance of a parallel connection of resistors compare to the smallest individual resistance?",
+    c: ["It is always greater than the smallest individual resistance", "It is always less than the smallest individual resistance", "It is always equal to the smallest individual resistance", "It is always equal to the sum of all resistances"],
+    a: 1
+  },
+  {
+    q: "In a series arrangement of resistors, what is true about the current through each resistor?",
+    c: ["The current varies from resistor to resistor", "The current is identical through each resistor", "The current is zero through each resistor", "The current depends on each resistor's position in the circuit"],
+    a: 1
+  },
+  {
+    q: "What happens to the other components in a series circuit if one component (such as a lamp) fails or burns out?",
+    c: ["The other components continue to work normally", "All other components are also affected, e.g. other lamps go dark", "Only the component next to the failed one is affected", "The circuit automatically repairs itself"],
+    a: 1
+  },
+  {
+    q: "How does the resistance of a metallic conductor change as temperature increases, and why?",
+    c: ["Resistance decreases, because ions vibrate less and interact less with electrons", "Resistance increases, because ions vibrate more quickly and are more likely to interact with electrons, causing them to lose energy", "Resistance remains constant regardless of temperature", "Resistance becomes negative at high temperatures"],
+    a: 1
+  },
+  {
+    q: "What does Kirchhoff's First Law (Current Law / Junction Rule) state?",
+    c: ["The total voltage around any closed loop is zero", "The total current entering a junction is exactly equal to the total current leaving that junction", "Current is inversely proportional to resistance", "The current through a resistor is proportional to its length"],
+    a: 1
+  },
+  {
+    q: "What does Kirchhoff's Second Law (Voltage Law / Loop Rule) state?",
+    c: ["The total current entering a junction equals the current leaving it", "In any closed loop, the algebraic sum of all voltage drops within the loop must equal zero", "Voltage is always constant throughout a circuit", "The voltage across a resistor is independent of the current through it"],
+    a: 1
+  },
+  {
+    q: "According to the Resistance Rule (used in applying Kirchhoff's Voltage Law), what is the change in potential when moving through a resistor in the direction of current flow?",
+    c: ["+IR", "-IR", "Zero", "+E"],
+    a: 1
+  },
+  {
+    q: "According to the EMF Rule (used in applying Kirchhoff's Voltage Law), what is the change in potential when moving through an ideal EMF device in the direction of the EMF arrow?",
+    c: ["+E", "-E", "Zero", "+IR"],
+    a: 0
+  },
+  {
+    q: "What is Electromotive Force (EMF) defined as?",
+    c: ["The potential difference across a resistor", "The total energy supplied per unit charge by a source such as a battery", "The current flowing through a circuit", "The resistance offered by a battery to current flow"],
+    a: 1
+  },
+  {
+    q: "What causes the terminal potential difference of a cell to fall when a load is connected?",
+    c: ["The resistance of the external load itself", "The internal resistance of the cell, which causes a voltage drop when current flows", "A decrease in the cell's EMF over time", "The type of wire used to connect the load"],
+    a: 1
+  },
+  {
+    q: "When a cell is discharging, current flows in a certain direction. What happens when current flows in the opposite direction (cell charging)?",
+    c: ["The terminal voltage V is always less than the EMF E", "The terminal voltage V becomes greater than the EMF E", "The terminal voltage V becomes zero", "There is no relationship between V and E in this case"],
+    a: 1
+  },
+  {
+    q: "For a battery formed from several cells connected in series, how is the total EMF of the battery calculated?",
+    c: ["It equals the EMF of just one cell", "It equals the sum of the EMFs of all the individual cells", "It equals the EMF of one cell divided by the number of cells", "It equals zero regardless of the number of cells"],
+    a: 1
+  },
+  {
+    q: "For a battery formed from several identical cells connected in parallel, how does the total EMF compare to a single cell's EMF?",
+    c: ["It is the sum of all the individual EMFs", "It equals the EMF of just one cell", "It is the EMF of one cell divided by the number of cells", "It is always greater than the EMF of one cell"],
+    a: 1
+  },
+
+  // ================= CBT EXAM PQ FILE: CONCEPTUAL/THEORY QUESTIONS =================
+
+  {
+    q: "Which of the following is true about subatomic particles?",
+    c: ["Electrons are made up of quarks", "Neutrons are electrically neutral particles", "Protons and neutrons are positively charged", "Electrons are positively charged"],
+    a: 1
+  },
+  {
+    q: "What is the dielectric constant of a vacuum or free space?",
+    c: ["More than 1", "Less than 1", "Equal to 1", "Equal to 0"],
+    a: 2
+  },
+  {
+    q: "If the force between two charges is doubled while all other factors are adjusted so that the charge magnitudes remain constant, and Coulomb's Law is assumed, which factor must decrease?",
+    c: ["The distance between the charges", "The permittivity of free space only", "The magnitude of one charge", "Nothing needs to change"],
+    a: 0
+  },
+  {
+    q: "What is the primary force responsible for holding the nucleus of an atom together?",
+    c: ["Gravitational force", "Weak nuclear force", "Strong nuclear force", "Electromagnetic force"],
+    a: 2
+  },
+  {
+    q: "The force between a charged body and a neutral (uncharged) body arises due to which phenomenon?",
+    c: ["Induction", "Gravitational force", "Friction", "Conduction"],
+    a: 0
+  },
+  {
+    q: "When a body is described as 'positively charged', what has physically happened to it?",
+    c: ["It has gained electrons", "It has lost electrons", "It has gained protons", "It has gained neutrons"],
+    a: 1
+  },
+  {
+    q: "Which of the following statements about electric force does NOT affect its magnitude?",
+    c: ["The medium between the charges", "The magnitude of the charges", "The distance between the charges", "The mass of the charges"],
+    a: 3
+  },
+  {
+    q: "What happens to the electrostatic force between two point charges as they are moved to an infinite distance from each other?",
+    c: ["It becomes infinite", "It approaches zero", "It remains unchanged", "It becomes negative"],
+    a: 1
+  },
+  {
+    q: "What does 'charging by induction' involve?",
+    c: ["Direct physical contact between the charged and neutral bodies", "A chemical reaction between the two bodies", "No direct contact between the charging body and the object being charged", "Heating the object to transfer charge"],
+    a: 2
+  },
+  {
+    q: "When a comb is rubbed on hair and later used to attract small pieces of paper, what is this phenomenon called?",
+    c: ["Induction", "Polarisation", "Conduction", "Nuclear force"],
+    a: 1
+  },
+  {
+    q: "In a uniform electric field, when a negative charge is released from rest, in which direction does it move relative to the field?",
+    c: ["In the same direction as the field", "Opposite to the field direction", "Perpendicular to the field", "It does not move"],
+    a: 1
+  },
+  {
+    q: "An atom becomes positively charged when it does what?",
+    c: ["Gains electrons", "Loses electrons", "Gains protons", "Loses neutrons"],
+    a: 1
+  },
+  {
+    q: "Where is the mass of an atom mainly concentrated?",
+    c: ["In the orbitals", "In the valence shell", "In the nucleus", "In the electron cloud"],
+    a: 2
+  },
+  {
+    q: "When two unlike (opposite sign) charges are brought closer together, what happens to their electric potential energy?",
+    c: ["It increases", "It decreases", "It remains the same", "It doubles"],
+    a: 1
+  },
+  {
+    q: "Which of the following quantities can exist at a point in space without requiring a test charge to be present there?",
+    c: ["Force on a charge", "Momentum of a charge", "Electric field", "Acceleration of a charge"],
+    a: 2
+  },
+  {
+    q: "A non-conducting (insulating) material can be made to conduct electricity by which of the following means?",
+    c: ["Magnetism alone", "Induction, applying a dopant, or increasing temperature", "Friction alone", "It can never be made to conduct"],
+    a: 1
+  },
+  {
+    q: "Which of the following statements about electric field lines is WRONG?",
+    c: ["The lines point away from a positive charge", "The lines point toward a negative charge", "The field exists within the charge itself", "The field exists in the space around the charge"],
+    a: 2
+  },
+  {
+    q: "What quantity is defined as charge per unit time flowing through a region?",
+    c: ["Electric potential", "Electric current", "Electric field", "Electric charge"],
+    a: 1
+  },
+  {
+    q: "Which physical quantity is described by the phrase 'Magnetostatic field'?",
+    c: ["A magnetic field that varies rapidly with time", "A magnetic field that does not vary with time", "An electric field created by a static charge", "A transient electromagnetic wave"],
+    a: 1
+  },
+  {
+    q: "Which law describes the magnetic field generated by a constant (steady) electric current?",
+    c: ["Coulomb's Law", "Ohm's Law", "Biot-Savart Law", "Newton's Law"],
+    a: 2
+  },
+  {
+    q: "What term describes a pair of equal but opposite charges separated by a small distance?",
+    c: ["Electric field", "Magnetic dipole", "Electric dipole", "Polarization"],
+    a: 2
+  },
+  {
+    q: "Magnetic field is classified as what type of physical quantity?",
+    c: ["Scalar quantity", "Vector quantity", "Constant quantity", "Derived quantity only, with no direction"],
+    a: 1
+  },
+  {
+    q: "Which law states that the sum of potential differences around any closed loop in a circuit must equal zero?",
+    c: ["Kirchhoff's Voltage Law", "Ohm's Law", "Ampere's Law", "Newton's Law"],
+    a: 0
+  },
+  {
+    q: "What are the three main factors that affect the capacitance of a parallel-plate capacitor?",
+    c: ["Voltage, resistance, temperature", "Plate area, distance of separation, and dielectric constant", "Material, wire gauge, and temperature", "Plate thickness, temperature, and wire length"],
+    a: 1
+  },
+  {
+    q: "What direction does electric charge move when placed near a positive field source (i.e., how does a positive test charge behave)?",
+    c: ["It moves away from the positive source", "It moves toward the positive source", "It remains stationary", "It moves randomly"],
+    a: 0
+  },
+  {
+    q: "Kirchhoff's Current Law can be stated as which of the following?",
+    c: ["Sum of currents entering a junction equals sum of currents leaving it", "Voltage is directly proportional to current", "Force is equal to mass times acceleration", "Charge is only conserved in DC circuits"],
+    a: 0
+  },
+  {
+    q: "What is the ratio of electric charge to the potential difference across the plates of a capacitor called?",
+    c: ["Resistance", "Inductance", "Capacitance", "Conductance"],
+    a: 2
+  },
+  {
+    q: "What is the study of magnetic fields that do not vary with time formally called?",
+    c: ["Electrodynamics", "Magnetostatics", "Electromagnetism", "Induction theory"],
+    a: 1
+  },
+  {
+    q: "What does it mean physically when metals are said to be characterized by 'the loss of' a certain particle, allowing them to conduct electricity well?",
+    c: ["Loss of protons", "Loss of neutrons", "Loss (delocalization) of electrons", "Loss of the nucleus"],
+    a: 2
+  },
+  {
+    q: "What is the correct general formula for the electric field E at a distance r from a point charge Q?",
+    c: ["E = F/q²", "E = kq/r²", "E = F/Q", "E = F/q"],
+    a: 1
+  },
+  {
+    q: "Resistors connected in series always experience the same value of which quantity?",
+    c: ["Voltage", "Power", "Current", "Resistance"],
+    a: 2
+  },
+  {
+    q: "What is the direction of the electric field near a negative point charge?",
+    c: ["Away from the charge", "Perpendicular to the charge", "Towards the charge", "Constant in all directions"],
+    a: 2
+  },
+  {
+    q: "What is the direction of the electric field near a positive point charge?",
+    c: ["Away from the charge", "Perpendicular to the charge", "Towards the charge", "Constant in all directions"],
+    a: 0
+  },
+  {
+    q: "What is the direction of the electric field experienced by a negative charge placed between two capacitor plates, relative to the external field?",
+    c: ["Toward the positive plate", "Along the field lines, same direction as the field", "The force on it is opposite to the field direction", "Away from the negative plate only"],
+    a: 2
+  }
+
+];
+
+
+
+
+
+
+
+function shareOnWhatsApp() {
+  const message = "https://generalhealthandwellness.com/category/questions-interactive-quiz-guide";
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappUrl = "whatsapp://send?text=" + encodedMessage;
+  window.open(whatsappUrl, '_blank');
+}
+
+let state = { idx: 0, answers: Array(QUESTIONS.length).fill(null) };
+const total = QUESTIONS.length;
+
+function renderQuestion() {
+  const area = document.getElementById('q-area');
+  const q = QUESTIONS[state.idx];
+  document.getElementById('q-num').textContent = state.idx + 1;
+  document.getElementById('q-total').textContent = total;
+  const progress = Math.round((state.idx / total) * 100);
+  document.getElementById('progress-bar').style.width = progress + '%';
+
+  area.innerHTML = '';
+  const qEl = document.createElement('div');
+  qEl.innerHTML = `<div class="question">${state.idx + 1}. ${q.q}</div>`;
+  const choices = document.createElement('div');
+  choices.className = 'choices';
+
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement('div');
+    btn.className = 'choice';
+    btn.textContent = String.fromCharCode(65 + i) + '. ' + choice;
+    if (state.answers[state.idx] === i) btn.classList.add('selected');
+
+    btn.addEventListener('click', () => {
+      state.answers[state.idx] = i;
+      document.querySelectorAll('.choice').forEach(el => el.classList.remove('selected'));
+      btn.classList.add('selected');
+    });
+
+    choices.appendChild(btn);
+  });
+
+  qEl.appendChild(choices);
+  area.appendChild(qEl);
+}
+
+document.getElementById('nextBtn').addEventListener('click', () => {
+  if (state.idx < total - 1) state.idx++;
+  renderQuestion();
+});
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+  if (state.idx > 0) state.idx--;
+  renderQuestion();
+});
+
+document.getElementById('submitBtn').addEventListener('click', () => {
+  const unanswered = state.answers.filter(a => a === null).length;
+  if (unanswered > 0) {
+    if (!confirm(`You have ${unanswered} unanswered questions. Submit anyway?`)) return;
+  }
+  gradeQuiz();
+});
+
+function gradeQuiz() {
+  clearInterval(timerInterval); // stop timer
+
+  let correct = 0;
+  const review = [];
+
+  for (let i = 0; i < total; i++) {
+    const user = state.answers[i];
+    const correctIdx = QUESTIONS[i].a;
+    const ok = user === correctIdx;
+    if (ok) correct++;
+    review.push({ i, q: QUESTIONS[i].q, choices: QUESTIONS[i].c, user, correctIdx, ok });
+  }
+
+  showResult(correct, review);
+}
+
+function showResult(score, review) {
+  document.getElementById('quiz-card').style.display = 'none';
+  const area = document.getElementById('result-area');
+  area.style.display = 'block';
+
+  document.getElementById('score-title').textContent = `You scored ${score} out of ${total}`;
+  const pct = Math.round((score / total) * 100);
+  document.getElementById('score-summary').textContent = `Percentage: ${pct}%`;
+
+  const list = document.getElementById('review-list');
+  list.innerHTML = '';
+
+  review.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'q-review';
+    const head = document.createElement('div');
+    head.style.fontWeight = '700';
+    head.textContent = `${item.i + 1}. ${item.q}`;
+    const userAns = document.createElement('div');
+    const ua = item.user === null ? 'No answer' : String.fromCharCode(65 + item.user) + '. ' + item.choices[item.user];
+    const ca = String.fromCharCode(65 + item.correctIdx) + '. ' + item.choices[item.correctIdx];
+    userAns.innerHTML = `<div><strong>Your answer:</strong> ${ua}</div><div><strong>Correct:</strong> ${ca}</div>`;
+    userAns.style.color = item.ok ? 'lightgreen' : '#fca5a5';
+    div.appendChild(head);
+    div.appendChild(userAns);
+    list.appendChild(div);
+  });
+}
+
+/* ---------------- TIMER ---------------- */
+let totalSeconds = 30* 60; 
+const countdownEl = document.getElementById('countdown-timer');
+let timerInterval = null;
+let warned = false;
+
+//  Warning sound
+function playWarningSound() {
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = ctx.createOscillator();
+  osc.type = "sine";
+  osc.frequency.setValueAtTime(800, ctx.currentTime);
+  osc.connect(ctx.destination);
+  osc.start();
+  osc.stop(ctx.currentTime + 0.5);
+}
+
+function startCountdown() {
+  timerInterval = setInterval(() => {
+    let mins = Math.floor(totalSeconds / 60);
+    let secs = totalSeconds % 60;
+    countdownEl.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    totalSeconds--;
+
+    if (totalSeconds === 300 && !warned) { // 5 minutes left
+      playWarningSound();
+      alert("⚠️ 5 minutes remaining!");
+      warned = true;
+    }
+
+    if (totalSeconds < 0) {
+      clearInterval(timerInterval);
+      gradeQuiz();
+    }
+  }, 1000);
+}
+
+/* ---------------- LIGHT MODE ---------------- */
+const toggleBtn = document.createElement("button");
+toggleBtn.textContent = "☀️";
+toggleBtn.style.marginLeft = "10px";
+document.querySelector("header").appendChild(toggleBtn);
+
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light-mode");
+});
+
+/* Reset */
+document.getElementById('retryBtn')?.addEventListener('click', () => {
+  state = { idx: 0, answers: Array(total).fill(null) };
+  document.getElementById('result-area').style.display = 'none';
+  document.getElementById('quiz-card').style.display = 'block';
+  totalSeconds = 45 * 60;
+  warned = false;
+  renderQuestion();
+  startCountdown();
+});
+
+renderQuestion();
+window.addEventListener('load', startCountdown);
+</script>
+      
+</body>
+</html>
+
